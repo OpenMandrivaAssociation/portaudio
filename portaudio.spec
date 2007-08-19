@@ -4,12 +4,11 @@
 Summary:	PortAudio is a free, cross platform, open-source, audio I/O library
 Name:		portaudio
 Version:	19
-Release:	%mkrel 3
-URL:		http://www.portaudio.com/
+Release:	%mkrel 4
 Group:		System/Libraries
 License:	BSD
-Source0:	pa_snapshot_v%version.tar.bz2
-Patch4:		portaudio-fix-Makefile.diff
+URL:		http://www.portaudio.com/
+Source0:	http://www.portaudio.com/archives/pa_snapshot_v%{version}.tar.gz
 BuildRequires:	autoconf2.5
 BuildRequires:	automake1.7
 BuildRequires:	pkgconfig
@@ -80,7 +79,6 @@ files.
 %prep
 
 %setup -q -n %{name}
-%patch4 -p1
 
 # fix dir perms
 find . -type d | xargs chmod 755
