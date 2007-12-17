@@ -14,7 +14,6 @@ BuildRequires:	automake1.7
 BuildRequires:	pkgconfig
 BuildRequires:	libalsa-devel
 BuildRequires:	libjack-devel
-BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 
 %description
 PortAudio is a free, cross platform, open-source, audio I/O 
