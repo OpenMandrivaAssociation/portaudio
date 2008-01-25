@@ -1,10 +1,11 @@
 %define	major 2
 %define libname	%mklibname portaudio %{major}
+%define develname %mklibname portaudio -d
 
 Summary:	PortAudio is a free, cross platform, open-source, audio I/O library
 Name:		portaudio
 Version:	19
-Release:	%mkrel 4
+Release:	%mkrel 5
 Group:		System/Libraries
 License:	BSD
 URL:		http://www.portaudio.com/
@@ -50,15 +51,15 @@ sound using a simple callback function. Example programs are
 included that synthesize sine waves and pink noise, perform fuzz
 distortion on a guitar, list available audio devices, etc. 
 
-%package -n	%{libname}-devel
+%package -n	%{develname}
 Summary:	Static library and header files for the PortAudio library
 Group:		Development/C
-Obsoletes:	%{name}-devel lib%{name}-devel 
 Provides:	%{name}-devel = %{version}
 Provides:	lib%{name}-devel = %{version}
 Requires:	%{libname} = %{version}
+Obsoletes:	%mklibname -d portaudio 2
 
-%description -n	%{libname}-devel
+%description -n	%{develname}
 PortAudio is a free, cross platform, open-source, audio I/O 
 library. It lets you write simple audio programs in 'C' that will
 compile and run on many platforms including Windows, Macintosh 
@@ -118,13 +119,12 @@ libtoolize --copy --force; aclocal-1.7; autoconf
 %files -n %{libname}
 %defattr(-,root,root)
 %doc LICENSE.txt README.txt
-%{_libdir}/*.so.*
+%{_libdir}/*.so.%{major}*
 
-%files -n %{libname}-devel
+%files -n %{develname}
 %defattr(-,root,root)
 %{_includedir}/*
 %{_libdir}/*.so
 %{_libdir}/*.la
 %{_libdir}/*.a
 %{_libdir}/pkgconfig/portaudio-*.pc
-
