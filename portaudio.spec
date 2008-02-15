@@ -1,15 +1,16 @@
 %define	major 2
 %define libname	%mklibname portaudio %{major}
 %define develname %mklibname portaudio -d
+%define snapshot 20071207
 
 Summary:	PortAudio is a free, cross platform, open-source, audio I/O library
 Name:		portaudio
 Version:	19
-Release:	%mkrel 5
+Release:	%mkrel 6
 Group:		System/Libraries
 License:	BSD
 URL:		http://www.portaudio.com/
-Source0:	http://www.portaudio.com/archives/pa_snapshot_v%{version}.tar.gz
+Source0:	http://www.portaudio.com/archives/pa_stable_v%{version}_%{snapshot}.tar.gz
 BuildRequires:	autoconf2.5
 BuildRequires:	automake1.7
 BuildRequires:	pkgconfig
