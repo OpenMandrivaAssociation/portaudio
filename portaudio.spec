@@ -3,7 +3,7 @@
 %define develname %mklibname portaudio -d
 %define snapshot 20071207
 
-Summary:	Free, cross platform, open-source, audio I/O library
+Summary:	Cross platform audio I/O library
 Name:		portaudio
 Version:	19
 Release:	%mkrel 6
@@ -34,7 +34,7 @@ included that synthesize sine waves and pink noise, perform fuzz
 distortion on a guitar, list available audio devices, etc. 
 
 %package -n	%{libname}
-Summary:	Free, cross platform, open-source, audio I/O library
+Summary:	Cross platform audio I/O library
 Group:          System/Libraries
 
 %description -n	%{libname}
