@@ -6,7 +6,7 @@
 Summary:	Cross platform audio I/O library
 Name:		portaudio
 Version:	19
-Release:	%mkrel 7
+Release:	%mkrel 8
 Group:		System/Libraries
 License:	BSD
 URL:		http://www.portaudio.com/
@@ -59,6 +59,8 @@ Provides:	%{name}-devel = %{version}
 Provides:	lib%{name}-devel = %{version}
 Requires:	%{libname} = %{version}
 Obsoletes:	%mklibname -d portaudio 2
+Obsoletes:	%mklibname -d portaudio 1
+Obsoletes:	%mklibname -d portaudio 0
 
 %description -n	%{develname}
 PortAudio is a free, cross platform, open-source, audio I/O 
