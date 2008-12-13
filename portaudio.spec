@@ -6,13 +6,14 @@
 Summary:	Cross platform audio I/O library
 Name:		portaudio
 Version:	19
-Release:	%mkrel 11
+Release:	%mkrel 12
 Group:		System/Libraries
 License:	BSD
 URL:		http://www.portaudio.com/
 Source0:	http://www.portaudio.com/archives/pa_stable_v%{version}_%{snapshot}.tar.gz
-BuildRequires:	autoconf2.5
-BuildRequires:	automake1.7
+# From Fedora #445644 (Kevin Kofler): fix it to work with non-mmap ALSA
+# devices - importantly, PulseAudio's ALSA emulation - AdamW 2008/12
+Patch0:		portaudio-19-alsa_pulse.patch
 BuildRequires:	pkgconfig
 BuildRequires:	libalsa-devel
 BuildRequires:	libjack-devel
@@ -84,6 +85,7 @@ files.
 %prep
 
 %setup -q -n %{name}
+%patch0 -p1 -b .pulse
 
 # fix dir perms
 find . -type d | xargs chmod 755
@@ -95,9 +97,8 @@ find . -type f | xargs chmod 644
 find . -type f | xargs perl -p -i -e 's/\r//'
 
 %build
-export WANT_AUTOCONF_2_5=1
 rm -f configure
-libtoolize --copy --force; aclocal-1.7; autoconf
+autoreconf
 
 %configure2_5x \
     --with-alsa \
