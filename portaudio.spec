@@ -17,6 +17,7 @@ Patch0:		portaudio-19-alsa_pulse.patch
 BuildRequires:	pkgconfig
 BuildRequires:	libalsa-devel
 BuildRequires:	libjack-devel
+BuildRequires:	libsamplerate-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 
 %description
