@@ -18,7 +18,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	libalsa-devel
 BuildRequires:	libjack-devel
 BuildRequires:	libsamplerate-devel
-BuildRequires:	libcelt-devel
+BuildRequires:	celt-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 
 %description
