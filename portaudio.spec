@@ -94,14 +94,12 @@ find . -type d | xargs chmod 755
 
 # fix file perms
 find . -type f | xargs chmod 644
+chmod 755 configure
 
 # strip away annoying ^M
 find . -type f | xargs perl -p -i -e 's/\r//'
 
 %build
-rm -f configure
-autoreconf
-
 %configure2_5x \
     --with-alsa \
     --with-jack
