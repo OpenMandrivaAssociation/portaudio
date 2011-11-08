@@ -131,5 +131,4 @@ find . -type f | xargs perl -p -i -e 's/\r//'
 %{_includedir}/*
 %{_libdir}/*.so
 %{_libdir}/*.la
-%{_libdir}/*.a
 %{_libdir}/pkgconfig/portaudio-*.pc
