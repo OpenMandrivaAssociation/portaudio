@@ -1,19 +1,16 @@
 %define	major 2
 %define libname	%mklibname portaudio %{major}
 %define develname %mklibname portaudio -d
-%define snapshot 20071207
+%define snapshot 20110326
 
 Summary:	Cross platform audio I/O library
 Name:		portaudio
 Version:	19
-Release:	%mkrel 17
+Release:	18
 Group:		System/Libraries
 License:	BSD
 URL:		http://www.portaudio.com/
-Source0:	http://www.portaudio.com/archives/pa_stable_v%{version}_%{snapshot}.tar.gz
-# From Fedora #445644 (Kevin Kofler): fix it to work with non-mmap ALSA
-# devices - importantly, PulseAudio's ALSA emulation - AdamW 2008/12
-Patch0:		portaudio-19-alsa_pulse.patch
+Source0:	http://www.portaudio.com/archives/pa_stable_v%{version}_%{snapshot}.tgz
 BuildRequires:	pkgconfig
 BuildRequires:	libalsa-devel
 BuildRequires:	libjack-devel
@@ -87,7 +84,6 @@ files.
 %prep
 
 %setup -q -n %{name}
-%patch0 -p1 -b .pulse
 
 # fix dir perms
 find . -type d | xargs chmod 755
