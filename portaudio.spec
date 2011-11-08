@@ -16,7 +16,6 @@ BuildRequires:	libalsa-devel
 BuildRequires:	libjack-devel
 BuildRequires:	libsamplerate-devel
 BuildRequires:	celt-devel
-BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 
 %description
 PortAudio is a free, cross platform, open-source, audio I/O 
@@ -82,7 +81,6 @@ This package contains the static PortAudio library and its header
 files.
 
 %prep
-
 %setup -q -n %{name}
 
 # fix dir perms
@@ -106,28 +104,13 @@ find . -type f | xargs perl -p -i -e 's/\r//'
 #    CFLAGS="%{optflags} -fPIC -DPIC -D_REENTRANT -D_GNU_SOURCE -Ipa_common -Ipablio"
 
 %install
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
-
 %makeinstall_std
 
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
-
-%clean
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
-
 %files -n %{libname}
-%defattr(-,root,root)
 %doc LICENSE.txt README.txt
 %{_libdir}/*.so.%{major}*
 
 %files -n %{develname}
-%defattr(-,root,root)
 %{_includedir}/*
 %{_libdir}/*.so
 %{_libdir}/*.la
