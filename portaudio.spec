@@ -6,7 +6,7 @@
 Summary:	Cross platform audio I/O library
 Name:		portaudio
 Version:	19
-Release:	18
+Release:	19
 Group:		System/Libraries
 License:	BSD
 URL:		http://www.portaudio.com/
@@ -113,5 +113,4 @@ find . -type f | xargs perl -p -i -e 's/\r//'
 %files -n %{develname}
 %{_includedir}/*
 %{_libdir}/*.so
-%{_libdir}/*.la
 %{_libdir}/pkgconfig/portaudio-*.pc
