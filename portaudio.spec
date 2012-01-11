@@ -13,7 +13,7 @@ URL:		http://www.portaudio.com/
 Source0:	http://www.portaudio.com/archives/pa_stable_v%{version}_%{snapshot}.tgz
 BuildRequires:	pkgconfig
 BuildRequires:	libalsa-devel
-BuildRequires:	libjack-devel
+BuildRequires:	jackit-devel
 BuildRequires:	libsamplerate-devel
 BuildRequires:	celt-devel
 
