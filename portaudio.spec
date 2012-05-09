@@ -35,6 +35,7 @@ distortion on a guitar, list available audio devices, etc.
 %package -n	%{libname}
 Summary:	Cross platform audio I/O library
 Group:          System/Libraries
+Provides:	libportaudio2
 
 %description -n	%{libname}
 PortAudio is a free, cross platform, open-source, audio I/O 
