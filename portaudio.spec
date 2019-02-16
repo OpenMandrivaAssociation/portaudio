@@ -1,7 +1,7 @@
 %define	major 2
 %define libname	%mklibname portaudio %{major}
 %define devname %mklibname portaudio -d
-%define snapshot 20140130
+%define snapshot 20161030
 %define maj_ver 19
 
 Summary:	Cross platform audio I/O library
@@ -11,7 +11,7 @@ Release:	5
 Group:		System/Libraries
 License:	BSD
 Url:		http://www.portaudio.com/
-Source0:	http://www.portaudio.com/archives/pa_stable_v%{maj_ver}_%{snapshot}.tgz
+Source0:	http://www.portaudio.com/archives/pa_stable_v%{maj_ver}0600_%{snapshot}.tgz
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(celt)
 BuildRequires:	pkgconfig(jack)
