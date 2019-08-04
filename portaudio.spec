@@ -6,7 +6,7 @@
 
 Summary:	Cross platform audio I/O library
 Name:		portaudio
-Version:	%{maj_ver}.%{snapshot}
+Version:	190600_20161030
 Release:	1
 Group:		System/Libraries
 License:	BSD
