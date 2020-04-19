@@ -13,6 +13,10 @@ License:	BSD
 Url:		http://www.portaudio.com/
 Source0:	http://www.portaudio.com/archives/pa_stable_v%{maj_ver}0600_%{snapshot}.tgz
 
+Patch0:		portaudio-pkgconfig-alsa.patch
+# Add some extra API needed by audacity
+Patch1:		debian-20161225-audacity-portmixer.patch
+
 BuildRequires:	pkgconfig
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(celt)
@@ -77,7 +81,17 @@ chmod 755 configure
 find . -type f | xargs perl -p -i -e 's/\r//'
 
 %build
-%configure2_5x \
+# Needed for patch1
+autoreconf -vfi
+# workaround: manually copy system depcomp removed during autoreconf
+cp -f /usr/share/automake-*/depcomp .
+
+# fix cxx lib overlinking issue
+pushd bindings/cpp
+	%before_configure
+popd
+
+%configure \
 	--with-alsa \
 	--with-jack \
 	--disable-static \
