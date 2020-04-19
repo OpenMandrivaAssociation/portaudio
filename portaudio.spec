@@ -25,6 +25,9 @@ BuildRequires:	pkgconfig(samplerate)
 BuildRequires:	autoconf 
 BuildRequires:	automake 
 BuildRequires:	libtool
+BuildRequires:	gettext-devel
+BuildRequires:  gettext
+BuildRequires:  glib-gettextize
 
 
 %description
