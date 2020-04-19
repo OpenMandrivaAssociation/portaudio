@@ -87,17 +87,9 @@ chmod 755 configure
 # strip away annoying ^M
 find . -type f | xargs perl -p -i -e 's/\r//'
 
-%build
-# Needed for patch1
 autoreconf -i -f
-# workaround: manually copy system depcomp removed during autoreconf
-cp -f /usr/share/automake-*/depcomp .
 
-# fix cxx lib overlinking issue
-pushd bindings/cpp
-	%before_configure
-popd
-
+%build
 %configure \
 	--with-alsa \
 	--with-jack \
