@@ -22,6 +22,10 @@ BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(celt)
 BuildRequires:	pkgconfig(jack)
 BuildRequires:	pkgconfig(samplerate)
+BuildRequires:	autoconf 
+BuildRequires:	automake 
+BuildRequires:	libtool
+
 
 %description
 PortAudio is a free, cross platform, open-source, audio I/O 
