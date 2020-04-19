@@ -86,7 +86,7 @@ find . -type f | xargs perl -p -i -e 's/\r//'
 
 %build
 # Needed for patch1
-autoreconf -vfi
+autoreconf -i -f
 # workaround: manually copy system depcomp removed during autoreconf
 cp -f /usr/share/automake-*/depcomp .
 
