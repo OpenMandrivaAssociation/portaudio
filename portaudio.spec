@@ -103,6 +103,9 @@ popd
 	--with-jack \
 	--disable-static \
 	--enable-cxx
+	
+sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' bindings/cpp/libtool
+sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' bindings/cpp/libtool
 
 %make_build
 
