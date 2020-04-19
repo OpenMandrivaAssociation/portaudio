@@ -7,11 +7,13 @@
 Summary:	Cross platform audio I/O library
 Name:		portaudio
 Version:	190600_20161030
-Release:	1
+Release:	2
 Group:		System/Libraries
 License:	BSD
 Url:		http://www.portaudio.com/
 Source0:	http://www.portaudio.com/archives/pa_stable_v%{maj_ver}0600_%{snapshot}.tgz
+
+BuildRequires:	pkgconfig
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(celt)
 BuildRequires:	pkgconfig(jack)
@@ -77,12 +79,14 @@ find . -type f | xargs perl -p -i -e 's/\r//'
 %build
 %configure2_5x \
 	--with-alsa \
-	--with-jack
+	--with-jack \
+	--disable-static \
+	--enable-cxx
 
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 %files -n %{libname}
 %{_libdir}/libportaudio.so.%{major}*
@@ -92,4 +96,3 @@ find . -type f | xargs perl -p -i -e 's/\r//'
 %{_includedir}/*
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/portaudio-*.pc
-
