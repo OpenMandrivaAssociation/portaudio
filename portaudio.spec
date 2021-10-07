@@ -6,6 +6,8 @@
 %define snapshot 20161030
 %define maj_ver 19
 
+%define _disable_rebuild_configure 1
+
 Summary:	Cross platform audio I/O library
 Name:		portaudio
 Version:	190600_20161030
@@ -30,7 +32,6 @@ BuildRequires:	libtool
 BuildRequires:	gettext-devel
 BuildRequires:  gettext
 BuildRequires:  glib-gettextize
-
 
 %description
 PortAudio is a free, cross platform, open-source, audio I/O 
@@ -99,7 +100,7 @@ This package contains the development PortAudio library and its header
 files.
 
 %prep
-%setup -qn %{name}
+%autosetup -n %{name}
 
 # fix dir perms
 find . -type d | xargs chmod 755
