@@ -16,21 +16,12 @@ Group:		System/Libraries
 License:	BSD
 Url:		http://www.portaudio.com/
 Source0:	http://www.portaudio.com/archives/pa_stable_v%{maj_ver}0600_%{snapshot}.tgz
-
-Patch0:		portaudio-pkgconfig-alsa.patch
-# Add some extra API needed by audacity
-Patch1:		debian-20161225-audacity-portmixer.patch
-
-BuildRequires:	pkgconfig
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(celt)
 BuildRequires:	pkgconfig(jack)
 BuildRequires:	pkgconfig(samplerate)
-BuildRequires:	autoconf 
-BuildRequires:	automake 
 BuildRequires:	libtool
 BuildRequires:	gettext-devel
-BuildRequires:  gettext
 BuildRequires:  glib-gettextize
 
 %description
