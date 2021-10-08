@@ -1,0 +1,27 @@
+diff --git a/configure.in b/configure.in
+index 83c239a..9b3b16e 100644
+--- a/configure.in
++++ b/configure.in
+@@ -9,7 +9,8 @@ AC_PREREQ(2.13)
+ 
+ dnl Init autoconf and make sure configure is being called
+ dnl from the right directory
+-AC_INIT([include/portaudio.h])
++AC_INIT
++AC_CONFIG_SRCDIR([include/portaudio.h])
+ 
+ dnl This is is for testing compilation on Mac OS
+ PAMAC_TEST_PROGRAM="
+diff --git a/bindings/cpp/configure.ac b/bindings/cpp/configure.ac
+index 100656a..4d23266 100644
+--- a/bindings/cpp/configure.ac
++++ b/bindings/cpp/configure.ac
+@@ -14,7 +14,7 @@ m4_define([lt_age], [0])
+ 
+ AC_INIT([PortAudioCpp], [12])
+ AC_CONFIG_SRCDIR([include/portaudiocpp/PortAudioCpp.hxx])
+-AM_INIT_AUTOMAKE
++AM_INIT_AUTOMAKE([subdir-objects])
+ AM_MAINTAINER_MODE
+ 
+ ###### Top-level directory of pacpp

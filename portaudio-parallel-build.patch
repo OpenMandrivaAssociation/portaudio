@@ -1,0 +1,12 @@
+diff -up ./Makefile.in.orig ./Makefile.in
+--- ./Makefile.in.orig	2016-12-16 16:40:27.025869094 +0200
++++ ./Makefile.in	2016-12-16 16:41:35.269309569 +0200
+@@ -247,7 +247,7 @@ lib-stamp:
+ Makefile: Makefile.in config.status
+ 	$(SHELL) config.status
+ 
+-all-recursive:
++all-recursive: lib/$(PALIB)
+ 	if test -n "$(SUBDIRS)" ; then for dir in "$(SUBDIRS)"; do $(MAKE) -C $$dir all; done ; fi
+ 
+ install-recursive:

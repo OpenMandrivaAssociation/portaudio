@@ -248,9 +248,9 @@ Last-Update: 2016-12-25
 --- a/src/hostapi/oss/pa_unix_oss.c
 +++ b/src/hostapi/oss/pa_unix_oss.c
 @@ -2043,3 +2043,26 @@
+     return result;
  #endif
  }
- 
 +const char *PaOSS_GetStreamInputDevice( PaStream* s )
 +{
 +    PaOssStream *stream = (PaOssStream*)s;

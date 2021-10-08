@@ -1,28 +1,35 @@
-%define	major 2
-%define libname	%mklibname portaudio %{major}
+%define major 2
+%define libname %mklibname portaudio %{major}
 %define devname %mklibname portaudio -d
 %define cppmajor 0
 %define libcpp %mklibname %{name}cpp %{cppmajor}
-%define snapshot 20161030
-%define maj_ver 19
+
+%define date 20210406
+%define sver %(echo %{version} | tr '.' '0')
 
 %define _disable_rebuild_configure 1
 
 Summary:	Cross platform audio I/O library
 Name:		portaudio
-Version:	190600_20161030
-Release:	2
+Version:	19.7.0
+Release:	1
 Group:		System/Libraries
 License:	BSD
 Url:		http://www.portaudio.com/
-Source0:	http://www.portaudio.com/archives/pa_stable_v%{maj_ver}0600_%{snapshot}.tgz
+Source0:	http://files.portaudio.com/archives/pa_stable_v%{sver}_%{date}.tgz
+Patch0:		portaudio-parallel-build.patch
+Patch1:		portaudio-doxynodate.patch
+Patch2:		portaudio-pkgconfig-alsa.patch
+# Add some extra API needed by audacity
+Patch3:		debian-20161225-audacity-portmixer.patch
+Patch4:		portaudio-autoconf.patch
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(celt)
 BuildRequires:	pkgconfig(jack)
 BuildRequires:	pkgconfig(samplerate)
 BuildRequires:	libtool
 BuildRequires:	gettext-devel
-BuildRequires:  glib-gettextize
+BuildRequires:	glib-gettextize
 
 %description
 PortAudio is a free, cross platform, open-source, audio I/O 
@@ -39,11 +46,11 @@ sound using a simple callback function. Example programs are
 included that synthesize sine waves and pink noise, perform fuzz
 distortion on a guitar, list available audio devices, etc. 
 
-%package -n	%{libname}
+%package -n %{libname}
 Summary:	Cross platform audio I/O library
 Group:		System/Libraries
 
-%description -n	%{libname}
+%description -n %{libname}
 PortAudio is a free, cross platform, open-source, audio I/O 
 library. It lets you write simple audio programs in 'C' that will
 compile and run on many platforms including Windows, Macintosh 
@@ -58,11 +65,11 @@ sound using a simple callback function. Example programs are
 included that synthesize sine waves and pink noise, perform fuzz
 distortion on a guitar, list available audio devices, etc. 
 
-%package -n	%{libcpp}
+%package -n %{libcpp}
 Summary:	Cross platform audio I/O library
 Group:		System/Libraries
 
-%description -n	%{libcpp}
+%description -n %{libcpp}
 PortAudio is a free, cross platform, open-source, audio I/O
 library. It lets you write simple audio programs in 'C' that will
 compile and run on many platforms including Windows, Macintosh
@@ -77,7 +84,7 @@ sound using a simple callback function. Example programs are
 included that synthesize sine waves and pink noise, perform fuzz
 distortion on a guitar, list available audio devices, etc
 
-%package -n	%{devname}
+%package -n %{devname}
 Summary:	Development library and header files for the PortAudio library
 Group:		Development/C
 Provides:	%{name}-devel = %{version}-%{release}
@@ -86,12 +93,12 @@ Provides:	lib%{name}cpp-devel = %{version}-%{release}
 Requires:	%{libname} = %{version}-%{release}
 Requires:	%{libcpp} = %{version}-%{release}
 
-%description -n	%{devname}
+%description -n %{devname}
 This package contains the development PortAudio library and its header
 files.
 
 %prep
-%autosetup -n %{name}
+%autosetup -n %{name} -p1
 
 # fix dir perms
 find . -type d | xargs chmod 755
@@ -103,7 +110,13 @@ chmod 755 configure
 # strip away annoying ^M
 find . -type f | xargs perl -p -i -e 's/\r//'
 
-autoreconf -i -f
+
+# Needed for patch3
+autoreconf -vfi
+# fix cxx lib overlinking issue
+cd bindings/cpp
+    autoreconf -vfi
+cd -
 
 %build
 %configure \
@@ -115,8 +128,7 @@ autoreconf -i -f
 sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' bindings/cpp/libtool
 sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' bindings/cpp/libtool
 
-# do not use make_build or build faied
-make
+%make_build -j1
 
 %install
 %make_install
