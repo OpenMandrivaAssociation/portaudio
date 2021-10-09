@@ -141,7 +141,7 @@ sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' bindings/cpp/lib
 %{_libdir}/lib%{name}cpp.so.%{cppmajor}.*
 
 %files -n %{devname}
-%doc LICENSE.txt README.txt
+%doc LICENSE.txt
 %{_includedir}/*
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/portaudio-*.pc
