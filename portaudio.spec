@@ -15,7 +15,7 @@ Version:	19.7.0
 Release:	2
 Group:		System/Libraries
 License:	BSD
-Url:		http://www.portaudio.com/
+Url:		https://www.portaudio.com/
 Source0:	http://files.portaudio.com/archives/pa_stable_v%{sver}_%{date}.tgz
 Patch0:		portaudio-parallel-build.patch
 Patch1:		portaudio-doxynodate.patch
